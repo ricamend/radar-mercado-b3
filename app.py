@@ -1,7 +1,7 @@
 # ==========================================
     # SEÇÃO 1: CÁLCULO DE PREÇO JUSTO (Math)
     # ==========================================
-    st.header("1️⃣ Preço Justo (Fair Value)")
+    st.header(" Preço Justo (Fair Value)")
     col_j1, col_j2 = st.columns(2)
 
     # Cálculo Índice
@@ -68,3 +68,4 @@
     with c6:
         item = dados['Ouro']
         st.metric(label="🥇 Ouro", value=f"{item['preco']:.2f}", delta=f"{item['var']:.2f}%")
+
