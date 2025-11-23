@@ -145,4 +145,46 @@ if st.button('Atualizar Painel Completo 🔄'):
     with c5:
         # Petróleo
         item = dados['Petróleo Brent']
-        st.metric
+        st.metric("🛢️ Petróleo", f"{item['preco']:.2f}", f"{item['var']:.2f}%")
+        
+    with c6:
+        # Ouro
+        item = dados['Ouro']
+        st.metric("🥇 Ouro", f"{item['preco']:.2f}", f"{item['var']:.2f}%")
+        
+    with c7:
+        st.write("") # Espaço vazio para alinhar se quiser
+        
+    with c8:
+        st.write("") # Espaço vazio
+
+    # ==========================================
+    # SEÇÃO 3: ANÁLISE IA (Resumo)
+    # ==========================================
+    st.markdown("---")
+    st.subheader("🤖 Veredito da Máquina")
+
+    sp_var = dados['S&P 500 Fut']['var']
+    nasdaq_var = dados['Nasdaq Fut']['var']
+    ewz_var = dados['EWZ (Brasil)']['var']
+    oil_var = dados['Petróleo Brent']['var']
+    dolar_var = dados['Dólar Spot']['var']
+
+    # Lógica Combinada
+    if sp_var > 0.3 and ewz_var > 0.3 and dolar_var < 0:
+        st.success("🚀 **CÉU DE BRIGADEIRO:** EUA sobem, Brasil sobe lá fora e Dólar cai aqui. Tendência forte de ALTA.")
+    
+    elif sp_var < -0.3 and ewz_var < -0.5:
+        st.error("🩸 **SANGRIA:** Aversão global a risco. EUA e Brasil caindo forte. Tendência de BAIXA.")
+        
+    elif oil_var < -1.0:
+        st.warning("⚠️ **ALERTA PETROBRAS:** O Petróleo está caindo muito forte. Isso pode derrubar o IBOV mesmo com S&P positivo.")
+        
+    elif nasdaq_var > 0.5 and sp_var > 0.2:
+        st.info("💻 **TECH RALLY:** Tecnologia puxando alta nos EUA. Bom sinal, mas verifique se os Juros Futuros (DI) aqui não estão subindo.")
+        
+    else:
+        st.write("⚖️ **MERCADO MISTO:** Sinais divergentes. Opere com cautela nas extremidades (suporte/resistência).")
+
+else:
+    st.info("Clique no botão para carregar o Painel Master.
